@@ -110,7 +110,10 @@ async function predict() {
     });
 
     try {
-        let res = await fetch("http://127.0.0.1:8000/predict?" + params, { method: "POST" });
+        let res = await fetch("https://grupo7-o8mr.onrender.com/predict?" + params, { 
+            method: "POST" 
+        });
+
         let data = await res.json();
 
         document.getElementById("result").style.display = "block";
@@ -118,10 +121,11 @@ async function predict() {
             "Precio Estimado: <br><span style='color:#0033A0'>$" + 
             data.predicted_price.toLocaleString('en-US', {maximumFractionDigits: 2}) +
             " USD</span>";
+
     } catch (error) {
         document.getElementById("result").style.display = "block";
         document.getElementById("result").innerHTML =
-            "<span class='error'>Error al conectar con la API. Asegúrate de que esté corriendo.</span>";
+            "<span class='error'>Error al conectar con la API en Render.</span>";
     }
 }
 </script>
